@@ -1,9 +1,9 @@
-#Custom Site Exporter for Burp
+# Custom Site Exporter for Burp
 
-##Project Description
-This is a Burp Extension for outputting sitemaps in custom formats. The initial format provided can be imported into IBM Security AppScan Standard as a manual explore. 
+## Project Description
+This is a Burp Extension forked from : https://github.com/kevinfealey/Burp_Custom_Site_Exporter, for outputting sitemaps in txt formats which can be used with a directory Bruteforcer as Dirb, dirsearch, etc.  
 
-##Usage
+## Usage
 To use this extension:
 
 1. Download the extension Jar file from the project bin directory 
@@ -18,5 +18,5 @@ To use this extension:
 10. Select a folder to export from the "Site map" subtab
 11. Right-click the folder and utilize the "Custom Site Exporter" menu to export the desired content to the desired file
 
-##Authors
-This plugin was created by Jonathan Smith at Aspect Security and is supported by @kevinfealey. 
+## Authors
+This plugin was created by Jonathan Smith at Aspect Security; was supported by @kevinfealey and now by @koukouille. 
