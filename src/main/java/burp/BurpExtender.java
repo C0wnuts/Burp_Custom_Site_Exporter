@@ -53,7 +53,8 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory
     
     public String createOutputForAppScanStandard(IHttpRequestResponse tmp[]){
     	callbacks.printOutput("OK, we called CreateOutput: " + tmp.length);
-    	String Output = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<requests>\n";
+    	String Output = "";
+    	String NewLine = "";
     	for(int i = 0; i < tmp.length; i++){
         	String protocol =  tmp[i].getHttpService().getProtocol();
     		String method = helpers.analyzeRequest(tmp[i].getRequest()).getMethod();
@@ -68,10 +69,16 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory
     		path = tmpStr.substring(firstslash + 1, secondslash).replace("\"", "%22");
     		int port = tmp[i].getHttpService().getPort();
     		String host =  tmp[i].getHttpService().getHost();
-    		Output += "\t<request method=\"" + method + "\" scheme=\"" + protocol + "\" httpVersion=\"HTTP/1.1\" host=\"" + host + "\"  port=\"" + port + "\" path=\"" + path + "\"></request>\n";
+    		NewLine = "" + protocol + "://" + host + path;
+				if(!(containsIgnoreCase(Output,NewLine))){
+					Output += NewLine+ "\n";
+				}
     	}
-    	Output += "</requests>";
     	return Output;
+    }
+    
+    public static boolean containsIgnoreCase(String str, String subString) {
+        return str.toLowerCase().contains(subString.toLowerCase());
     }
     
     @Override
@@ -84,7 +91,7 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory
         JMenuItem item = new JMenuItem("Export From Proxy History", null);
         JMenuItem item2 = new JMenuItem("Export Site Map", null);
         
-        FileFilter filter = new FileNameExtensionFilter("XML File","xml");
+        FileFilter filter = new FileNameExtensionFilter("TXT File","txt");
                 
         JFileChooser fileChooser = new JFileChooser(){
         	@Override
@@ -112,7 +119,7 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory
         fileChooser.setMultiSelectionEnabled(false);
         fileChooser.setFileFilter(filter);
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setSelectedFile(new File("AppScanStandard_ManualExplore_FromBurp.xml"));
+        fileChooser.setSelectedFile(new File("AppScanStandard_ManualExplore_FromBurp.txt"));
 
         
     	item.addActionListener(new ActionListener() {
