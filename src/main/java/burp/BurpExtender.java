@@ -87,10 +87,7 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory
         
         byte ctx = invocation.getInvocationContext();
         
-    	JMenu main = new JMenu("Custom Site Exporter");
-        JMenuItem item = new JMenuItem("Export From Proxy History", null);
-        JMenuItem item2 = new JMenuItem("Export Site Map", null);
-        
+    	JMenuItem main = new JMenuItem("Custom Site Exporter", null);
         FileFilter filter = new FileNameExtensionFilter("TXT File","txt");
                 
         JFileChooser fileChooser = new JFileChooser(){
@@ -119,20 +116,9 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory
         fileChooser.setMultiSelectionEnabled(false);
         fileChooser.setFileFilter(filter);
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setSelectedFile(new File("AppScanStandard_ManualExplore_FromBurp.txt"));
-
-        
-    	item.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {  
-            	IHttpRequestResponse[] tmp = callbacks.getProxyHistory();
-            	if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-            		File outputFile = fileChooser.getSelectedFile();
-            		writeStringToFile(createOutputForAppScanStandard(tmp), outputFile);
-            	}
-            }
-        });
+        fileChooser.setSelectedFile(new File("burpSiteMapExport.txt"));
     	
-    	item2.addActionListener(new ActionListener() {
+    	main.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	IHttpRequestResponse tmp2  = invocation.getSelectedMessages()[0];
             	IHttpRequestResponse[] tmp = callbacks.getSiteMap(tmp2.getHttpService().getProtocol() + "://" + tmp2.getHttpService().getHost());
@@ -142,20 +128,8 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory
             	}
             }
         });
-    	main.add(item);
-    	main.add(item2);
+    	
     	menu.add(main);
-        
-        if (ctx == IContextMenuInvocation.CONTEXT_PROXY_HISTORY) {
-        	item2.setEnabled(false);
-            item.setEnabled(true);
-        }
-        if (ctx == IContextMenuInvocation.CONTEXT_TARGET_SITE_MAP_TREE) {
-        	item.setEnabled(false);
-            item2.setEnabled(true);
-        }
-        
-        
         
         return menu;
     }
