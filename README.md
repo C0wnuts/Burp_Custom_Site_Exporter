@@ -16,7 +16,7 @@ To use this extension:
 8. The extension should now be listed in the "Burp Extensions" list
 9. Switch to the "Target" tab
 10. Select a folder to export from the "Site map" subtab
-11. Right-click the folder and utilize the "Custom Site Exporter" menu to export the desired content to the desired file
+11. Right-click the folder and utilize the "Custom Site Exporter" menu to export sitemap of desired website to desired file
 
 ## Authors
 This plugin was created by Jonathan Smith at Aspect Security; was supported by @kevinfealey and now by @koukouille. 
