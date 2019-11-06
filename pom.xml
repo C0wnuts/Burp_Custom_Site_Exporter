@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.aspectsecurity.automation.burp</groupId>
   <artifactId>CustomSiteExporter</artifactId>
-  <version>1.3</version>
+  <version>1.4</version>
 <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
