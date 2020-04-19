@@ -19,4 +19,4 @@ To use this extension:
 11. Right-click the folder and utilize the "Custom Site Exporter" menu to export sitemap of desired website to desired file
 
 ## Authors
-This plugin was created by Jonathan Smith at Aspect Security; was supported by @kevinfealey and now by @koukouille. 
+This plugin was created by Jonathan Smith at Aspect Security; was supported by @kevinfealey and now by @C0wnuts. 
